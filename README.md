@@ -508,26 +508,50 @@ localhost:~# seq 10
 
 seq 10 | sed -n '4,6p'
 ## OUTPUT
-
+```
+localhost:~# seq 10 | sed -n '4,6p'
+4
+5
+6
+```
 
 
 seq 10 | sed -n '2,~4p'
 ## OUTPUT
-
+```
+localhost:~# seq 10 | sed -n '2,~4p'
+sed: no address after comma
+```
 
 
 seq 3 | sed '2a hello'
 ## OUTPUT
-
+```
+localhost:~# seq 3 | sed '2a hello'
+1
+2
+hello
+3
+```
 
 
 seq 2 | sed '2i hello'
 ## OUTPUT
-
+```
+localhost:~# seq 2 | sed '2i hello'
+1
+hello
+2
+```
 
 seq 10 | sed '2,9c hello'
 ## OUTPUT
-
+```
+localhost:~# seq 10 | sed '2,9c hello'
+1
+hello
+10
+```
 
 sed -n '2,4{s/^/$/;p}' file23
 ## OUTPUT
