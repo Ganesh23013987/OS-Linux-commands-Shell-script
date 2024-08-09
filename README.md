@@ -28,7 +28,6 @@ chanchal singhvi
 c.k. shukla
 s.n. dasgupta
 sumit chakrobarty
-^d
 ```
 cat > file2
 ```
@@ -37,29 +36,84 @@ barun sengupta
 c.k. shukla
 lalit chowdury
 s.n. dasgupta
-^d
 ```
 ### Display the content of the files
 cat < file1
 ## OUTPUT
-
-
+```
+localhost:~# cat < file1
+chanchal singhvi
+ 
+c.k. shukla
+ 
+s.n. dasgupta
+ 
+sumit chakrobarty
+```
 
 cat < file2
 ## OUTPUT
-
-
+```
+localhost:~# cat < file2
+anil aggarwal
+ 
+barun sengupta
+ 
+c.k. shukla
+ 
+lalit chowdury
+ 
+s.n. dasgupta
+```
 # Comparing Files
 cmp file1 file2
 ## OUTPUT
- 
+```
+localhost:~# cmp file1 file2
+file1 file2 differ: char 1, line 1 
+```
 comm file1 file2
  ## OUTPUT
-
+```
+localhost:~# comm file1 file2
+        anil aggarwal
  
+        barun sengupta
+ 
+        c.k. shukla
+ 
+chanchal singhvi
+ 
+c.k. shukla
+ 
+        lalit chowdury
+ 
+                s.n. dasgupta
+ 
+sumit chakrobarty
+```
 diff file1 file2
 ## OUTPUT
-
+```
+localhost:~# diff file1 file2
+--- file1
++++ file2
+@@ -1,9 +1,10 @@
+-chanchal singhvi
++anil aggarwal
+ 
++barun sengupta
++
+ c.k. shukla
+ 
++lalit chowdury
++
+ s.n. dasgupta
+ 
+-sumit chakrobarty
+-
+\ No newline at end of file
+```
 
 #Filters
 
@@ -69,90 +123,155 @@ cat > file11
 ```
 Hello world
 This is my world
-^d
 ```
 cat > file22
 ```
 1001 | Ram | 10000 | HR
 1002 | tom |  5000 | Admin
 1003 | Joe |  7000 | Developer
-^d
 ```
 
 
 cut -c1-3 file11
 ## OUTPUT
-
+```
+localhost:~# cut -c1-3 file11
+Hel
+ 
+Thi
+```
 
 
 
 cut -d "|" -f 1 file22
 ## OUTPUT
-
+```
+localhost:~# cut -d "|" -f 1 file22
+1001
+1002
+1003
+```
 
 
 cut -d "|" -f 2 file22
 ## OUTPUT
+```
+localhost:~# cut -d "|" -f 2 file22
+ Ram
+ tom
+ Joe
+```
 
-
-cat < newfile 
+cat > newfile 
 ```
 Hello world
 hello world
-^d
 ````
-cat > newfile 
+cat > newfile
+```
 Hello world
 hello world
- 
+```
 grep Hello newfile 
 ## OUTPUT
-
+```
+localhost:~# grep Hello newfile
+Hello world
+```
 
 
 grep hello newfile 
 ## OUTPUT
-
+```
+localhost:~# grep hello newfile
+hello world
+```
 
 
 
 grep -v hello newfile 
 ## OUTPUT
-
+```
+localhost:~# grep -v hello newfile
+Hello world
+```
 
 
 cat newfile | grep -i "hello"
 ## OUTPUT
-
+```
+localhost:~# cat newfile | grep -i "hello"
+Hello world
+hello world
+```
 
 
 
 cat newfile | grep -i -c "hello"
 ## OUTPUT
-
+```
+localhost:~# cat newfile | grep -i -c "hello"
+2
+```
 
 
 
 grep -R ubuntu /etc
 ## OUTPUT
-
+```
+localhost:~# grep -R ubuntu /etc
+grep: unrecognized option: R
+BusyBox v1.31.1 () multi-call binary.
+ 
+Usage: grep [-HhnlLoqvsriwFE] [-m N] [-A/B/C N] PATTERN/-e PATTERN.../-f FILE [FILE
+]...
+ 
+Search for PATTERN in FILEs (or stdin)
+ 
+        -H      Add 'filename:' prefix
+        -h      Do not add 'filename:' prefix
+        -n      Add 'line_no:' prefix
+        -l      Show only names of files that match
+        -L      Show only names of files that don't match
+        -c      Show only count of matching lines
+        -o      Show only the matching part of line
+        -q      Quiet. Return 0 if PATTERN is found, 1 otherwise
+        -v      Select non-matching lines
+        -s      Suppress open and read errors
+        -r      Recurse
+        -i      Ignore case
+        -w      Match whole words only
+        -x      Match whole lines only
+        -F      PATTERN is a literal (not regexp)
+        -E      PATTERN is an extended regexp
+        -m N    Match up to N times per file
+        -A N    Print N lines of trailing context
+        -B N    Print N lines of leading context
+        -C N    Same as '-A N -B N'
+        -e PTRN Pattern to match
+        -f FILE Read pattern from file
+```
 
 
 grep -w -n world newfile   
 ## OUTPUT
+```
+localhost:~# grep -w -n world newfile
+1:Hello world
+3:hello world
+```
 
-
-cat < newfile 
+cat > newfile 
 ```
 Hello world
 hello world
 Linux is world number 1
 Unix is predecessor
 Linux is best in this World
-^d
+
 ```
 
-cat > newfile
+cat < newfile
 ```
 Hello world
 hello world
@@ -163,60 +282,105 @@ Linux is best in this World
  ```
 egrep -w 'Hello|hello' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep -w 'Hello|hello' newfile
+Hello world
+hello world
+```
 
 
 egrep -w '(H|h)ello' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep -w '(H|h)ello' newfile
+Hello world
+hello world
+```
 
 
 egrep -w '(H|h)ell[a-z]' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep -w '(H|h)ell[a-z]' newfile
+Hello world
+hello world
+```
 
 
 
 egrep '(^hello)' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep '(^hello)' newfile
+hello world
+```
 
 
 egrep '(world$)' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep '(world$)' newfile
+Hello world
+hello world
+```
 
 
 egrep '(World$)' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep '(World$)' newfile
+Linux is best in this World
+```
 
 egrep '((W|w)orld$)' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep '((W|w)orld$)' newfile
+Hello world
+hello world
+Linux is best in this World
+```
 
 
 egrep '[1-9]' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep '[1-9]' newfile
+Linux is world number 1
+```
 
 
 egrep 'Linux.*world' newfile 
 ## OUTPUT
-
+```
+ocalhost:~# egrep 'Linux.*world' newfile
+Linux is world number 1
+```
 
 egrep 'Linux.*World' newfile 
 ## OUTPUT
-
+```
+localhost:~# egrep 'Linux.*World' newfile
+Linux is best in this World
+```
 
 egrep l{2} newfile
 ## OUTPUT
-
+```
+localhost:~# egrep l{2} newfile
+Hello world
+hello world
+```
 
 
 egrep 's{1,2}' newfile
 ## OUTPUT 
-
+```
+localhost:~# egrep 's{1,2}' newfile
+Linux is world number 1
+Unix is predecessor
+Linux is best in this World
+```
 
 cat > file23
 ```
@@ -228,54 +392,118 @@ cat > file23
 1004 | Sit |  7000 | Dev
 1003 | Joe |  7000 | Developer
 1001 | Ram | 10000 | HR
-^d
 ```
 
 
 sed -n -e '3p' file23
 ## OUTPUT
-
+```
+localhost:~# sed -n -e '3p' file23
+1002 | tom |  5000 | Admin
+```
 
 
 sed -n -e '$p' file23
 ## OUTPUT
+```
+localhost:~# sed -n -e '$p' file23
+1001 | Ram | 10000 | HR
 
+```
 
 
 sed  -e 's/Ram/Sita/' file23
 ## OUTPUT
-
+```
+localhost:~# sed  -e 's/Ram/Sita/' file23
+1001 | Sita | 10000 | HR
+1001 | Sita | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Sita | 10000 | HR
+```
 
 
 sed  -e '2s/Ram/Sita/' file23
 ## OUTPUT
-
+```
+localhost:~# sed  -e '2s/Ram/Sita/' file23
+1001 | Ram | 10000 | HR
+1001 | Sita | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Ram | 10000 | HR
+```
 
 
 sed  '/tom/s/5000/6000/' file23
 ## OUTPUT
-
+```
+localhost:~# sed  '/tom/s/5000/6000/' file23
+1001 | Ram | 10000 | HR
+1001 | Ram | 10000 | HR
+1002 | tom |  6000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+1004 | Sit |  7000 | Dev
+1003 | Joe |  7000 | Developer
+1001 | Ram | 10000 | HR
+```
 
 
 sed -n -e '1,5p' file23
 ## OUTPUT
-
+```
+localhost:~# sed -n -e '1,5p' file23
+1001 | Ram | 10000 | HR
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1005 | Sam |  5000 | HR
+```
 
 
 sed -n -e '2,/Joe/p' file23
 ## OUTPUT
-
+```
+localhost:~# sed -n -e '2,/Joe/p' file23
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+```
 
 
 
 sed -n -e '/tom/,/Joe/p' file23
 ## OUTPUT
-
+```
+localhost:~# sed -n -e '/tom/,/Joe/p' file23
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+```
 
 
 seq 10 
 ## OUTPUT
-
+```
+localhost:~# seq 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
 
 
 seq 10 | sed -n '4,6p'
