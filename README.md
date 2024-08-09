@@ -555,11 +555,22 @@ hello
 
 sed -n '2,4{s/^/$/;p}' file23
 ## OUTPUT
-
+```
+localhost:~# sed -n '2,4{s/^/$/;p}' file23
+$
+$1001 | Ram | 10000 | HR
+$
+```
 
 
 sed -n '2,4{s/$/*/;p}' file23
-
+## OUTPUT
+```
+localhost:~# sed -n '2,4{s/$/*/;p}' file23
+*
+1001 | Ram | 10000 | HR*
+*
+```
 
 #Sorting File content
 cat > file21
@@ -572,7 +583,14 @@ cat > file21
 ``` 
 sort file21
 ## OUTPUT
-
+```
+localhost:~# sort file21 
+1001 | Ram | 10000 | HR
+1002 | tom |  5000 | Admin
+1003 | Joe |  7000 | Developer
+1004 | Sit |  7000 | Dev
+1005 | Sam |  5000 | HR
+```
 
 cat > file22
 ```
@@ -585,14 +603,44 @@ cat > file22
 ``` 
 uniq file22
 ## OUTPUT
-
+```
+localhost:~# uniq file22
+1001 | Ram | 10000 | HR
+ 
+1001 | Ram | 10000 | HR
+ 
+1002 | tom |  5000 | Admin
+ 
+1003 | Joe |  7000 | Developer
+ 
+1005 | Sam |  5000 | HR
+ 
+1004 | Sit |  7000 | Dev
+```
 
 
 #Using tr command
 
 cat file23 | tr [:lower:] [:upper:]
  ## OUTPUT
-
+```
+localhost:~# cat file23 | tr [:lower:] [:upper:]
+1001 | RAM | 10000 | HR
+ 
+1001 | RAM | 10000 | HR
+ 
+1002 | TOM |  5000 | ADMIN
+ 
+1003 | JOE |  7000 | DEVELOPER
+ 
+1005 | SAM |  5000 | HR
+ 
+1004 | SIT |  7000 | DEV
+ 
+1003 | JOE |  7000 | DEVELOPER
+ 
+1001 | RAM | 10000 | HR
+```
 cat < urllist.txt
 ```
 www. yahoo. com
@@ -608,24 +656,55 @@ www. mrcet.... com
  ```
 cat urllist.txt | tr -d ' '
  ## OUTPUT
-
-
+```
+localhost:~# cat urllist.txt | tr -d ' '
+www.yahoo.com
  
+www.google.com
+ 
+www.mrcet....com
+```
+
 cat urllist.txt | tr -d ' ' | tr -s '.'
 ## OUTPUT
-
-
-
+```
+localhost:~# cat urllist.txt | tr -d ' ' | tr -s '.'
+www.yahoo.com
+ 
+www.google.com
+ 
+www.mrcet.com
+ 
+```
+## OUTPUT
 #Backup commands
 tar -cvf backup.tar *
+```
+localhost:~# tar -cvf backup.tar *
+bench.py
+file21
+file22
+file23
+hello.c
+hello.js
+readme.txt
+urllist.txt
+```
 ## OUTPUT
 
 
 mkdir backupdir
- 
+```
+localhost:~# mkdir backupdir
+mkdir: can't create directory 'backupdir': File exists
+``` 
 mv backup.tar backupdir
- 
+```
+localhost:~# mv backup.tar backupdir
+mv: can't rename 'backup.tar': No such file or directory
+``` 
 tar -tvf backup.tar
+
 ## OUTPUT
 
 
